@@ -1,6 +1,14 @@
-FROM node:12.18.1
-WORKDIR /app
-COPY ["package.json", "package-lock.json*", "./"]
+FROM node:latest
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json /usr/src/app/
+
 RUN npm install
-COPY . .
-CMD ["npm", "start"]
+
+COPY . /usr/src/app
+
+EXPOSE 8000
+
+CMD [ "npm", "start" ]
