@@ -1,110 +1,118 @@
 <template>
-  <v-card
-    :loading="loading"
-    class="mx-auto my-12"
-    max-width="374"
-  >
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+  <v-container fluid>
+      <v-row>
+        <v-col
+          v-for="(plant, plantIndex) in plants"
+          :key="plantIndex"
+        >
 
-<!-- Hier muss dann die Moeglichkeit bestehen, dass man eigene Bilder einfügen kann -->
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
+        <v-card>
+          <!-- Hier muss dann die Moeglichkeit bestehen, dass man eigene Bilder einfügen kann -->
+          <v-img
+            height="250"
+            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          />
 
-  
-    <v-card-title>Pflanzen-/Gruppenname</v-card-title>
+          <status-light
+            class="statusLight"
+          />
 
-    <v-card-text class="left">
-      Kurze Beschreibung Pflanze/Gruppe
-    </v-card-text>
+          <v-card-title>{{plant.name}}</v-card-title>
 
-    <v-card-text class="left">
-        Aktuelle Werte:
-    </v-card-text>
+          <v-divider/>
+          
+          <!-- Actions edit, delete, show data -->
+          <v-card-actions>
+            <v-spacer />
 
-    <v-divider class="mx-4"></v-divider>
-    
-    <!-- Actions edit, delete, show data -->
-    <v-card-actions>
-     
-     <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="cyan"
-      @click="Edit"
-    >
-      <v-icon dark>
-        mdi-pencil
-      </v-icon>
-    </v-btn>
-     
-      <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="primary"
-      @click="Delete"
-    >
-    
-      <v-icon dark>
-        mdi-minus
-      </v-icon>
-    </v-btn>
+            <v-btn
+              icon
+              fab
+              small
+              @click="showData"
+            >
+              <v-icon dark>mdi-chart-areaspline</v-icon>
+            </v-btn>
 
-    <v-btn
-      class="mx-2"
-      fab
-      dark
-      small
-      color="teal"
-      @click="data"
-    >
-      <v-icon dark>
-        mdi-format-list-bulleted-square
-      </v-icon>
-    </v-btn>
+            <v-btn
+              fab
+              icon
+              small
+              @click="editPlant"
+            >
+              <v-icon dark>mdi-pencil</v-icon>
+            </v-btn>
 
-    </v-card-actions>
-   
-  </v-card>
+            <v-btn
+              icon
+              fab
+              small
+              @click="deletePlant"
+            >
+              <v-icon dark>mdi-delete</v-icon>
+            </v-btn>
+          </v-card-actions> 
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-  export default {
-     name: 'Card',
-    data: () => ({
-      loading: false,
-      selection: 1,
-    }),
+import StatusLight from './StatusLight.vue';
 
+export default {
+    name: 'Card',
+    components: {
+        StatusLight
+    },
+    data()
+    {
+        return {
+            loading: false,
+            selection: 1,
+            plants: [
+                {
+                name: "Jan",
+                },
+                {
+                name: "Silvie",
+                },
+                {
+                name: "Melanie",
+                },
+                {
+                name: "Alex",
+                },
+                {
+                name: "Manuel",
+                }
+            ]
+        }
+    },
     methods: {
-      edit () {
+        editPlant()
+        {
         
-      },
+        },
+        deletePlant()
+        {
 
-    delete () {
-
-    },
-
-    data () {
-
+        },
+        showData()
+        {
+        
+        }
     }
-
-    },
-  }
+}
 </script>
 
 <style>
+.statusLight {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 
 .left{
     text-align: left;
