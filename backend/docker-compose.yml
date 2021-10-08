@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  web:
+  api:
     build:
       context: ./
       target: dev
@@ -11,3 +11,17 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: dev
+    depends_on:
+      - "mongodb"
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    ports:
+      - "4000:27017"
+    volumes:
+      - "mongodb_data:/data/db"
+
+volumes:
+  mongodb_data:
