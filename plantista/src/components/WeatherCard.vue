@@ -1,0 +1,51 @@
+<template>
+  <v-card
+    class="mx-auto"
+    max-width="344"
+    outlined
+  >
+    <v-list-item three-line>
+      <v-list-item-content>
+        <div class="text-overline mb-4">
+          Wetter
+        </div>
+        <div class="weather">
+            {{dataDings.weather}}
+        </div>
+
+      </v-list-item-content>
+    </v-list-item>
+  </v-card>
+</template>
+
+<script>
+  export default {
+    name: 'WeatherCard',
+    data()
+    {
+        return {
+            dataDings: null
+        };
+    },
+    methods: {
+        async weather () {   
+            const cityID="Berlin";
+            const key = 'c0065c46c8a7a5084dc2b3d53e13f057';
+            const apiData = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityID + '&APPID=' + key)
+            
+            this.dataDings  = await apiData.json();
+        }
+    },
+    mounted()
+    {
+        this.weather();
+    }
+  }
+  
+</script> 
+
+<style>
+
+
+
+</style>
