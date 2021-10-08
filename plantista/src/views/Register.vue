@@ -25,8 +25,9 @@
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
-        <v-btn color="success">Registrieren</v-btn>
-
+        <router-link :to="{name: 'Anmeldung'}">
+          <v-btn color="success">Login</v-btn>
+        </router-link>
      </v-card-actions>
     </v-card>
   </v-app>

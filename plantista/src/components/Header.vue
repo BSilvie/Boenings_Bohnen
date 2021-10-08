@@ -3,7 +3,7 @@
     height="150"
   >
       <v-img
-        src="@/assets/Logo.png"
+        src="@/assets/logo.png"
         width="100"
         height="100"
         contain
