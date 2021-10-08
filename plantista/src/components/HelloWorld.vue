@@ -25,6 +25,8 @@
         </p>
       </v-col>
 
+      <silvie-mel-hoeren-zu-card />
+
       <v-col
         class="mb-5"
         cols="12"
@@ -92,9 +94,12 @@
 </template>
 
 <script>
+  import SilvieMelHoerenZuCard from './SilvieMelHoerenZuCard';
   export default {
     name: 'HelloWorld',
-
+    components: {
+      SilvieMelHoerenZuCard
+    },
     data: () => ({
       ecosystem: [
         {
