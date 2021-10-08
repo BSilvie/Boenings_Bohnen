@@ -8,7 +8,7 @@ services:
       - .:/src
     command: npm start
     ports:
-      - "3000:3000"
+      - "${API_EXPOSE_PORT}:3000"
     environment:
       NODE_ENV: dev
     depends_on:
@@ -16,10 +16,10 @@ services:
   mongodb:
     image: mongo:latest
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
     ports:
-      - "4000:27017"
+      - "${MONGODB_EXPOSE_PORT}:27017"
     volumes:
       - "mongodb_data:/data/db"
 
