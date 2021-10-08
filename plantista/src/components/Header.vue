@@ -3,7 +3,7 @@
     height="150"
   >
       <v-img
-        src="https://picsum.photos/1920/1080?random"
+        src="@/assets/Logo.png"
         width="100"
         height="100"
         contain
