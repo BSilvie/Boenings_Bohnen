@@ -10,7 +10,7 @@ router.post("/", sensordata.create);
 router.get("/", sensordata.findAll);
 
 // retrieve all entries by address
-router.get("/:address", sensordata.findAllByAddress);
+router.get("/device/:address", sensordata.findAllByAddress);
 
 // retrieve a single entry by id
 router.get("/:id", sensordata.findOne);

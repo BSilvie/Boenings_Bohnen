@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "aac5158d-225e-4bbf-bf54-3717c8cbfd81",
+		"name": "sensordata-schema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "save sensordata",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataValue\": \"66116\",\r\n    \"dataType\": \"Integer\",\r\n    \"deviceAddress\": \"2C:54:91:88:C9:E3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/sensordata",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensordata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all sensordata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/sensordata",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensordata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get sensordata by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "get sensordata by address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "update sensordata entry by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataValue\": 999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/sensordata/6160b6717dcdd18dc2b8e08d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensordata",
+						"6160b6717dcdd18dc2b8e08d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete sensordata entry  by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/sensordata/6160b6717dcdd18dc2b8e08d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensordata",
+						"6160b6717dcdd18dc2b8e08d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all sensordata",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dataValue\": 999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/sensordata/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensordata",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
