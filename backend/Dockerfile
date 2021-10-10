@@ -6,7 +6,7 @@ EXPOSE 3000
 
 FROM base as production
 ENV NODE_ENV=production
-RUN npm ci
+RUN npm ci --production
 COPY . /src
 CMD ["node", "bin/www"]
 
