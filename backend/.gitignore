@@ -1,5 +1,5 @@
 node_modules
-bin/*
-mongodb_data/*
+mongodb_data
+bin
 !bin/www
 .env
