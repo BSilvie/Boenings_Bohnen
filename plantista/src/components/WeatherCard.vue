@@ -9,7 +9,7 @@
         <div class="text-overline mb-4">
           Wetter
         </div>
-        <div class="weather">
+        <div v-if="dataDings" class="weather">
             {{dataDings.weather}}
         </div>
 

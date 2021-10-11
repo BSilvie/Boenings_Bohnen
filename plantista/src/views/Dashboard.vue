@@ -1,32 +1,64 @@
 <template>
-  <div class="dashboard">
-    <h1>Dashboard</h1>
+    <v-container fluid>
+    <div class="dashboard">
+        <h1>Dashboard</h1>
 
-    <Weather-card />
-    <v-divider class="mx-4, cardDivider"></v-divider>
-    <Card />
-  </div>   
+        <Weather-card />
+        <v-divider class="mx-4, cardDivider"></v-divider>
+        <Card />
+
+        <AddSensor v-model="addSensorModal" />
+
+        <v-fab-transition>
+            <v-btn
+                class="fab-button"
+                @click="addSensorModal = true"
+                color="red"
+                dark
+                large
+                fab
+            >
+                <v-icon>mdi-plus</v-icon>
+            </v-btn>
+        </v-fab-transition>
+    </div> 
+    </v-container>
 </template>
 
 <script>
 import Card from '../components/Card.vue';
 import WeatherCard from '../components/WeatherCard.vue';
+import AddSensor from '../components/AddSensor.vue';
+
 export default {
     name: 'Dashboard',
     components: {
         Card,
-        WeatherCard
+        WeatherCard,
+        AddSensor
+    },
+    data()
+    {
+        return {
+            addSensorModal: false
+        };
     }
 }
 </script>
-<style>
 
+<style>
 .v-card {
     margin-left: 25px;
     margin-bottom: 25px;
 }
 
 .cardDivider {
-  margin-bottom: 25px;
+margin-bottom: 25px;
+}
+
+.fab-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
 }
 </style>
