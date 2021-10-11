@@ -117,9 +117,5 @@ export default {
 .left{
     text-align: left;
 }
-.group {
-  display: flex;
-  flex: 1;
-  justify-content: space-around;
-}
+
 </style>
