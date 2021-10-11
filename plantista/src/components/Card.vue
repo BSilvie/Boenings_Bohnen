@@ -31,33 +31,53 @@
           <!-- Actions edit, delete, show data -->
           <v-card-actions>
             <v-spacer />
-
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
               fab
               small
+              v-bind="attrs"
+              v-on="on"
               @click="showData(plant.id)"
             >
               <v-icon dark>mdi-chart-areaspline</v-icon>
             </v-btn>
+            </template>
+            <span>Daten anzeigen</span>
+          </v-tooltip>
 
+          <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
             <v-btn
               fab
               icon
               small
+              v-bind="attrs"
+              v-on="on"
               @click="editPlant(plant.id)"
             >
               <v-icon dark>mdi-pencil</v-icon>
             </v-btn>
+          </template>
+              <span>Bearbeiten</span>
+          </v-tooltip>
 
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
               fab
               small
+              v-bind="attrs"
+              v-on="on"
               @click="deletePlant(plant.id)"
             >
               <v-icon dark>mdi-delete</v-icon>
             </v-btn>
+            </template>
+            <span> Löschen </span>
+          </v-tooltip>
           </v-card-actions> 
         </v-card>
     </v-col>
