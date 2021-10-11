@@ -28,9 +28,13 @@
         };
     },
     methods: {
-        async weather () {   
+        async weather ()
+        {
             const cityID = "Berlin";
             const key = '';
+
+            if (!key) { return; }
+            
             const apiData = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityID + '&APPID=' + key)
             
             this.dataDings  = await apiData.json();

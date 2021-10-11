@@ -4,8 +4,12 @@
         <h1>Dashboard</h1>
 
         <Weather-card />
-        <v-divider class="mx-4, cardDivider"></v-divider>
-        <Card />
+
+        <v-divider class="mx-4, cardDivider" />
+
+        <Card
+            :plants="plants"
+        />
 
         <AddSensor v-model="addSensorModal" />
 
@@ -40,7 +44,39 @@ export default {
     data()
     {
         return {
-            addSensorModal: false
+            addSensorModal: false,
+            plants: [
+                {
+                    id: "sampleId123747823548",
+                    name: "Jan",
+                    moisturization: 525,
+                    status: 0
+                },
+                {
+                    id: "sampleId8l3lfnfn0h",
+                    name: "Silvie",
+                    moisturization: 221,
+                    status: 2
+                },
+                {
+                    id: "sampleId=03ld8enfe9fn",
+                    name: "Melanie",
+                    moisturization: 432,
+                    status: 2
+                },
+                {
+                    id: "sampleIdjannmmvn3orj",
+                    name: "Alex",
+                    moisturization: 531,
+                    status: 2
+                },
+                {
+                    id: "sampleIdjkodj9H)§Hi",
+                    name: "Manuel",
+                    moisturization: 553,
+                    status: 1
+                }
+            ]
         };
     }
 }

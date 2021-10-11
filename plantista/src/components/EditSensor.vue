@@ -6,17 +6,10 @@
                 width="500"
             >
                 <v-card class="ma-0">
-                    <v-card-title class="text-h5">Sensor hinzufügen</v-card-title>
+                    <v-card-title class="text-h5">Sensor bearbeiten</v-card-title>
 
                     <v-card-text class="text-left">
-                        Möchtest du einen Sensor hinzufügen?
-
-                        <v-text-field
-                            v-model="sensorId"
-                            label="Sensor-Identifikationsnummer"
-                            prepend-icon="mdi-counter"
-                            required
-                        />
+                        Möchtest du den Sensor mit der ID: {{sensorId}} bearbeiten?
                     </v-card-text>
 
                     <v-divider />
@@ -34,7 +27,7 @@
                             text
                             @click="addNewSensor"
                         >
-                            Hinzufügen
+                            Entfernen
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -44,24 +37,23 @@
 </template>
 
 <script>
+
 export default {
-    name: 'AddSensor',
+    name: 'EditSensor',
     props: {
         value: {
             type: Boolean,
             required: true
+        },
+        sensorId: {
+            type: String,
+            required: true
         }
-    },
-    data()
-    {
-        return {
-            sensorId: ''
-        };
     },
     methods: {
         addNewSensor()
         {
-            console.log('adds new sensor with id: ' + this.sensorId);
+            console.log('deletes sensor');
             this.$emit('input', false);
         }
     }

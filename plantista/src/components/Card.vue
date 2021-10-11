@@ -36,7 +36,7 @@
               icon
               fab
               small
-              @click="showData"
+              @click="showData(plant.id)"
             >
               <v-icon dark>mdi-chart-areaspline</v-icon>
             </v-btn>
@@ -45,7 +45,7 @@
               fab
               icon
               small
-              @click="editPlant"
+              @click="editPlant(plant.id)"
             >
               <v-icon dark>mdi-pencil</v-icon>
             </v-btn>
@@ -54,71 +54,77 @@
               icon
               fab
               small
-              @click="deletePlant"
+              @click="deletePlant(plant.id)"
             >
               <v-icon dark>mdi-delete</v-icon>
             </v-btn>
           </v-card-actions> 
         </v-card>
-      </v-col>
+    </v-col>
+
+    <DeleteSensor
+        v-model="deleteSensorModal"
+        :sensorId="selectedSensorId"
+    />
+
+    <EditSensor
+        v-model="editPlantModal"
+        :sensorId="selectedSensorId"
+    />
+
+    <ShowData
+        v-model="showDataModal"
+        :sensorId="selectedSensorId"
+    />
+
     </v-row>
   </v-container>
 </template>
 
 <script>
 import StatusLight from './StatusLight.vue';
+import DeleteSensor from '../components/DeleteSensor.vue';
+import EditSensor from '../components/EditSensor.vue';
+import ShowData from '../components/ShowData.vue';
 
 export default {
     name: 'Card',
     components: {
-        StatusLight
+        StatusLight,
+        DeleteSensor,
+        EditSensor,
+        ShowData
+    },
+    props: {
+        plants: {
+            type: Array,
+            required: true
+        }
     },
     data()
     {
         return {
-            loading: false,
-            selection: 1,
-            plants: [
-                {
-                    name: "Jan",
-                    moisturization: 525,
-                    status: 0
-                },
-                {
-                    name: "Silvie",
-                    moisturization: 221,
-                    status: 2
-                },
-                {
-                    name: "Melanie",
-                    moisturization: 432,
-                    status: 2
-                },
-                {
-                    name: "Alex",
-                    moisturization: 531,
-                    status: 2
-                },
-                {
-                    name: "Manuel",
-                    moisturization: 553,
-                    status: 1
-                }
-            ]
+            deleteSensorModal: false,
+            showDataModal: false,
+            editPlantModal: false,
+            selectedSensorId: ''
         }
     },
     methods: {
-        editPlant()
+        editPlant(id)
         {
-        
+            this.selectedSensorId = id;
+            this.editPlantModal = true;
         },
-        deletePlant()
+        deletePlant(id)
         {
-
+            this.selectedSensorId = id;
+            this.deleteSensorModal = true;
         },
-        showData()
+        showData(id)
         {
-        
+            this.selectedSensorId = id;
+            this.showDataModal = true;
         }
     }
 }

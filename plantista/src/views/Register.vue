@@ -5,18 +5,21 @@
         <v-card-text>
             <v-form >
                 <v-text-field 
-                label="Username"
-                prepend-icon="mdi-account-circle"
-            />
+                    v-model="username"
+                    label="Username"
+                    prepend-icon="mdi-account-circle"
+                />
                 <v-text-field 
-                label="E-Mail"
-                prepend-icon="mdi-email"
-            />
-            <v-text-field 
-                type="Password"
-                label="Passwort"
-                prepend-icon="mdi-lock"
-            />
+                    v-model="email"
+                    label="E-Mail"
+                    prepend-icon="mdi-email"
+                />
+                <v-text-field 
+                    v-model="password"
+                    type="Password"
+                    label="Passwort"
+                    prepend-icon="mdi-lock"
+                />
             </v-form>
         </v-card-text>
         <v-divider></v-divider>
@@ -41,11 +44,13 @@
 
 <script>
 export default {
-  name: 'Login',
-  data () {
-    return {
-      showPassword: false
+    name: 'Login',
+    data () {
+        return {
+            username: '',
+            email: '',
+            password: ''
+        }
     }
-  }
 }
 
