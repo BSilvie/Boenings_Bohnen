@@ -6,6 +6,8 @@ mongoose.Promise = global.Promise;
 const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.sensordata = require("./sensordata.model.js")(mongoose);
+db.sensordata = require("./sensordata.model")(mongoose);
+db.users = require("./users.model")(mongoose);
+db.dbversions = require("./dbversions.model")(mongoose);
 
 module.exports = db;

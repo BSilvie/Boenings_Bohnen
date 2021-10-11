@@ -7,10 +7,12 @@ const cors = require('cors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cron = require('node-cron');
 
 // getting routes
-var indexRouter = require('./routes/index.js');
+var userRouter = require('./routes/users.routes');
 var sensordataRouter = require('./routes/sensordata.routes.js');
+var dbVersionRouter = require('./routes/dbversions.routes');
 
 var app = express();
 
@@ -26,8 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // mapping router to routes
-app.use('/', indexRouter);
 app.use('/api/sensordata', sensordataRouter);
+app.use('/api/users', userRouter);
+app.use('/api/dbversion', dbVersionRouter);
 
 /**
  * Database connection
@@ -45,6 +48,13 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
+
+/**
+ * Scheduled Sync-Task
+ */
+cron.schedule('* * * * *', () => {
+  console.log('[' + new Date(Date.now()) + '] started syncing job');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
