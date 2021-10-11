@@ -12,9 +12,6 @@
         <v-list-item> Temperatur: {{temp}}°C </v-list-item>
         <v-list-item> Luftfeuchtigkeit: {{dataDings.main.humidity}}% </v-list-item>
         </div>
-        <div v-if="dataDings" class="weather">
-            {{dataDings.weather}}
-        </div>
 
       </v-list-item-content>
     </v-list-item>
@@ -37,7 +34,10 @@
              if (!key) { return; }
 
             const apiData = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + cityID + '&lang=de&APPID=' + key)
-       
+            
+            this.dataDings  = await apiData.json();
+        }
+        
     },
     mounted()
     {
