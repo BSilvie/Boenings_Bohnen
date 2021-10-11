@@ -1,6 +1,6 @@
 module.exports = mongoose => {
     const Sensordata = mongoose.model(
-        "sensordata",
+        "sensordatas",
         mongoose.Schema(
             {
                 dataValue: String,
