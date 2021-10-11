@@ -24,35 +24,43 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // configuring app depending on mode
 switch(process.env.API_CONFIGURATION_MODE){
-  case "LOCAL":
-
-    // init routes
-    var userRouter = require('./routes/users.routes');
-    var sensordataRouter = require('./routes/sensordata.routes.js');
-    var dbVersionRouter = require('./routes/dbversions.routes');
-    // mapping routes
-    app.use('/api/sensordata', sensordataRouter);
-    app.use('/api/users', userRouter);
-    app.use('/api/dbversion', dbVersionRouter);
-    break;
-  case "REMOTE":
-
-    // init routes
-    var dataCollectionsRouter = require('./routes/dataCollections.routes');
-    // mapping routes
-    app.use('/api/dataCollection', dataCollectionsRouter);
-    break;
-  default:
-
-    // init routes
-    var userRouter = require('./routes/users.routes');
-    var sensordataRouter = require('./routes/sensordata.routes.js');
-    var dbVersionRouter = require('./routes/dbversions.routes');
-    // mapping routes
-    app.use('/api/sensordata', sensordataRouter);
-    app.use('/api/users', userRouter);
-    app.use('/api/dbversion', dbVersionRouter);
-    break;
+	case "LOCAL":
+		// init routes
+		var sensordataRouter = require('./routes/sensordata.routes.js');
+		var dbVersionRouter = require('./routes/dbversions.routes');
+		// mapping routes
+		app.use('/api/sensordata', sensordataRouter);
+		app.use('/api/dbversion', dbVersionRouter);
+		break;
+  	case "REMOTE":
+		// init routes
+		var userRouter = require('./routes/users.routes');
+		var dataCollectionsRouter = require('./routes/dataCollections.routes');
+		// mapping routes
+		app.use('/api/users', userRouter);
+		app.use('/api/dataCollection', dataCollectionsRouter);
+		break;
+    case "DEVELOPMENT":
+		// init routes
+		var sensordataRouter = require('./routes/sensordata.routes.js');
+		var dbVersionRouter = require('./routes/dbversions.routes');
+		var userRouter = require('./routes/users.routes');
+		var dataCollectionsRouter = require('./routes/dataCollections.routes');
+		// mapping routes
+		app.use('/api/sensordata', sensordataRouter);
+		app.use('/api/dbversion', dbVersionRouter);
+		app.use('/api/users', userRouter);
+		app.use('/api/dataCollection', dataCollectionsRouter);
+		break;
+    default:
+    	// init routes
+		var sensordataRouter = require('./routes/sensordata.routes.js');
+		var dbVersionRouter = require('./routes/dbversions.routes');
+		// mapping routes
+		app.use('/api/sensordata', sensordataRouter);
+		app.use('/api/users', userRouter);
+		app.use('/api/dbversion', dbVersionRouter);
+		break;
 }
 
 /**

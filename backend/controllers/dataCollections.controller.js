@@ -16,6 +16,22 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findAllByDeviceAddress = (req, res) => {
+    const deviceAddress = req.params.deviceAddress;
+
+    DataCollections
+    .find({deviceAddress: deviceAddress})
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occured while trying to fetch the dataCollections."
+        });
+    });
+};
+
 exports.create = (req, res) => {
     console.log(req.body);
     // validation
