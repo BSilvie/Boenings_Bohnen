@@ -7,17 +7,24 @@
         >
 
         <v-card>
-          <!-- Hier muss dann die Moeglichkeit bestehen, dass man eigene Bilder einfügen kann -->
-          <v-img
+            <!-- Hier muss dann die Moeglichkeit bestehen, dass man eigene Bilder einfügen kann -->
+            <v-img
             height="250"
             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-          />
+            />
 
-          <status-light
-            class="statusLight"
-          />
+            <status-light
+                :status="plant.status"
+                class="statusLight"
+            />
 
-          <v-card-title>{{plant.name}}</v-card-title>
+            <v-card-title>{{plant.name}}</v-card-title>
+
+            <v-btn
+                fab
+            >
+                {{plant.moisturization}}
+            </v-btn>
 
           <v-divider/>
           
@@ -73,19 +80,29 @@ export default {
             selection: 1,
             plants: [
                 {
-                name: "Jan",
+                    name: "Jan",
+                    moisturization: 525,
+                    status: 0
                 },
                 {
-                name: "Silvie",
+                    name: "Silvie",
+                    moisturization: 221,
+                    status: 2
                 },
                 {
-                name: "Melanie",
+                    name: "Melanie",
+                    moisturization: 432,
+                    status: 2
                 },
                 {
-                name: "Alex",
+                    name: "Alex",
+                    moisturization: 531,
+                    status: 2
                 },
                 {
-                name: "Manuel",
+                    name: "Manuel",
+                    moisturization: 553,
+                    status: 1
                 }
             ]
         }
