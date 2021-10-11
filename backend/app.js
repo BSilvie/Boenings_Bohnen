@@ -1,5 +1,5 @@
 // requiring .env-vars
-require('dotenv').config()
+require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
@@ -8,11 +8,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cron = require('node-cron');
-
-// getting routes
-var userRouter = require('./routes/users.routes');
-var sensordataRouter = require('./routes/sensordata.routes.js');
-var dbVersionRouter = require('./routes/dbversions.routes');
 
 var app = express();
 
@@ -27,10 +22,38 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// mapping router to routes
-app.use('/api/sensordata', sensordataRouter);
-app.use('/api/users', userRouter);
-app.use('/api/dbversion', dbVersionRouter);
+// configuring app depending on mode
+switch(process.env.API_CONFIGURATION_MODE){
+  case "LOCAL":
+
+    // init routes
+    var userRouter = require('./routes/users.routes');
+    var sensordataRouter = require('./routes/sensordata.routes.js');
+    var dbVersionRouter = require('./routes/dbversions.routes');
+    // mapping routes
+    app.use('/api/sensordata', sensordataRouter);
+    app.use('/api/users', userRouter);
+    app.use('/api/dbversion', dbVersionRouter);
+    break;
+  case "REMOTE":
+
+    // init routes
+    var dataCollectionsRouter = require('./routes/dataCollections.routes');
+    // mapping routes
+    app.use('/api/dataCollection', dataCollectionsRouter);
+    break;
+  default:
+
+    // init routes
+    var userRouter = require('./routes/users.routes');
+    var sensordataRouter = require('./routes/sensordata.routes.js');
+    var dbVersionRouter = require('./routes/dbversions.routes');
+    // mapping routes
+    app.use('/api/sensordata', sensordataRouter);
+    app.use('/api/users', userRouter);
+    app.use('/api/dbversion', dbVersionRouter);
+    break;
+}
 
 /**
  * Database connection
