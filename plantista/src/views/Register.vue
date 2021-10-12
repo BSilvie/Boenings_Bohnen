@@ -3,8 +3,8 @@
         <v-card-title class="text-h5">Registrierung</v-card-title>
         <v-divider />
         <v-card-text>
-            <v-form >
-                <v-text-field 
+            <v-form ref="form">
+                <v-text-field
                     v-model="username"
                     label="Username"
                     prepend-icon="mdi-account-circle"
@@ -14,7 +14,7 @@
                     label="E-Mail"
                     prepend-icon="mdi-email"
                 />
-                <v-text-field 
+                <v-text-field
                     v-model="password"
                     type="Password"
                     label="Passwort"
@@ -33,10 +33,12 @@
             </v-btn>
             <v-spacer />
             <v-btn
+                :disabled="(!username.length || !password.length || !email.length)"
                 color="info"
                 text
+                @click="registerUser"
             >
-                Anmelden
+                Registrieren
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -44,14 +46,21 @@
 
 <script>
 export default {
-    name: 'Login',
-    data () {
+    name: 'Register',
+    data()
+    {
         return {
             username: '',
-            email: '',
             password: '',
-            testwert: ''
+            email: ''
+        }
+    },
+    methods: {
+        registerUser()
+        {
+            
         }
     }
 }
+</script>
 

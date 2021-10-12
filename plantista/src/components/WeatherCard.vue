@@ -1,24 +1,20 @@
 <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-    outlined
-  >
-    <v-list-item three-line>
-        <v-list-item-content>
+    <v-col>
+        <v-card min-height="450">
+            <v-img
+                src="https://source.unsplash.com/400x320/?weather"
+                min-width="400"
+                min-height="320"
+            />
+
             <div
                 v-if="weatherData"
-                class="text-overline mb-4"
+                class="text-overline ma-2 pa-2"
             >
-                Aktuelles Wetter in {{weatherData.name}} 
-                <v-list-item> {{weatherData.weather[0].description}} </v-list-item>
-                <v-list-item> Temperatur: {{currentTemperate}}°C </v-list-item>
-                <v-list-item> Luftfeuchtigkeit: {{weatherData.main.humidity}}% </v-list-item>
+                {{weatherData.name}} | {{weatherData.weather[0].description}} | {{currentTemperate}}°C | {{weatherData.main.humidity}}%
             </div>
-
-        </v-list-item-content>
-    </v-list-item>
-</v-card>
+        </v-card>
+    </v-col>
 </template>
 
 <script>

@@ -3,7 +3,7 @@
         <v-card-title class="text-h5">Anmeldung</v-card-title>
         <v-divider />
         <v-card-text>
-            <v-form >
+            <v-form>
                 <v-text-field
                     v-model="email"
                     label="E-Mail Adresse"
@@ -32,10 +32,12 @@
             </v-btn>
             <v-spacer />
             <v-btn
-            color="info"
-            text
+                :disabled="(!email.length || !password.length)"
+                color="info"
+                text
+                @click="loginUser"
             >
-            Anmelden
+                Anmelden
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -44,12 +46,18 @@
 <script>
 export default {
     name: 'Login',
-    data () {
+    data()
+    {
         return {
             password: '',
-            email: '',
-            showPassword: false
+            email: ''
+        }
+    },
+    methods: {
+        loginUser()
+        {
+            console.log('l^ogin');
         }
     }
 }
-
+</script>

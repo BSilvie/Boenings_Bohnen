@@ -3,15 +3,39 @@
     <div class="dashboard">
         <h1>Dashboard</h1>
 
-        <Weather-card />
+        <v-container fluid>
+            <v-row>
+                <weather-card />
+                <v-col
+                    v-for="(plant, plantIndex) in plants"
+                    :key="plantIndex"
+                >
+                    <card
+                        :plant="plant"
+                        @edit="editPlant"
+                        @delete="deletePlant"
+                        @data="showData"
+                    />
+                </v-col>
+            </v-row>
+        </v-container>
 
-        <v-divider class="mx-4, cardDivider" />
+        <add-sensor v-model="addSensorModal" />
 
-        <Card
-            :plants="plants"
+        <DeleteSensor
+            v-model="deleteSensorModal"
+            :sensorId="selectedSensorId"
         />
 
-        <AddSensor v-model="addSensorModal" />
+        <EditSensor
+            v-model="editPlantModal"
+            :sensorId="selectedSensorId"
+        />
+
+        <ShowData
+            v-model="showDataModal"
+            :sensorId="selectedSensorId"
+        />
 
         <v-fab-transition>
             <v-btn
@@ -33,17 +57,27 @@
 import Card from '../components/Card.vue';
 import WeatherCard from '../components/WeatherCard.vue';
 import AddSensor from '../components/AddSensor.vue';
+import DeleteSensor from '../components/DeleteSensor.vue';
+import EditSensor from '../components/EditSensor.vue';
+import ShowData from '../components/ShowData.vue';
 
 export default {
     name: 'Dashboard',
     components: {
         Card,
         WeatherCard,
-        AddSensor
+        AddSensor,
+        DeleteSensor,
+        EditSensor,
+        ShowData
     },
     data()
     {
         return {
+            deleteSensorModal: false,
+            showDataModal: false,
+            editPlantModal: false,
+            selectedSensorId: '',
             addSensorModal: false,
             plants: [
                 {
@@ -78,6 +112,23 @@ export default {
                 }
             ]
         };
+    },
+    methods: {
+        editPlant(id)
+        {
+            this.selectedSensorId = id;
+            this.editPlantModal = true;
+        },
+        deletePlant(id)
+        {
+            this.selectedSensorId = id;
+            this.deleteSensorModal = true;
+        },
+        showData(id)
+        {
+            this.selectedSensorId = id;
+            this.showDataModal = true;
+        }
     }
 }
 </script>
