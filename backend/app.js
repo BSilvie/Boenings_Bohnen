@@ -83,8 +83,9 @@ db.mongoose
 /**
  * Scheduled Sync-Task
  */
-cron.schedule('* * * * *', () => {
-	var sync = require('./sync/db.sync')
+cron.schedule('5 * * * * *', () => {
+
+	var sync = require('./sync/db.sync');
 	console.log('[SYNC-WORKFLOW] started Sync-Job at ' + new Date(Date.now()));
 	sync.runRemoteSync()
 		.then(res => {
@@ -93,6 +94,7 @@ cron.schedule('* * * * *', () => {
 		.catch(error => {
 			console.log("[SYNC-WORKFLOW] An error occured while trying to start the Sync-Job. " + error.message);
 		});
+
 });
 
 // catch 404 and forward to error handler
