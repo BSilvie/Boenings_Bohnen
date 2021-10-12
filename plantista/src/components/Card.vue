@@ -17,7 +17,7 @@
                 {{plant.name}} | {{plant.moisturization}} φ
         
                 <v-spacer />
-                <!-- Actions edit, delete, show data -->
+                <!-- Actions delete, show data -->
                 <v-tooltip bottom>
                     <template v-slot:activator="{ on, attrs }">
                     <v-btn
@@ -32,22 +32,6 @@
                     </v-btn>
                     </template>
                     <span>Daten anzeigen</span>
-                </v-tooltip>
-
-                <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                        fab
-                        icon
-                        small
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="$emit('edit', plant.id)"
-                    >
-                        <v-icon dark>mdi-pencil</v-icon>
-                    </v-btn>
-                    </template>
-                    <span>Bearbeiten</span>
                 </v-tooltip>
 
                 <v-tooltip bottom>

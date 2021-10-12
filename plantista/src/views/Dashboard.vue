@@ -12,7 +12,6 @@
                 >
                     <card
                         :plant="plant"
-                        @edit="editPlant"
                         @delete="deletePlant"
                         @data="showData"
                     />
@@ -24,11 +23,6 @@
 
         <DeleteSensor
             v-model="deleteSensorModal"
-            :sensorId="selectedSensorId"
-        />
-
-        <EditSensor
-            v-model="editPlantModal"
             :sensorId="selectedSensorId"
         />
 
@@ -58,7 +52,6 @@ import Card from '../components/Card.vue';
 import WeatherCard from '../components/WeatherCard.vue';
 import AddSensor from '../components/AddSensor.vue';
 import DeleteSensor from '../components/DeleteSensor.vue';
-import EditSensor from '../components/EditSensor.vue';
 import ShowData from '../components/ShowData.vue';
 
 export default {
@@ -68,7 +61,6 @@ export default {
         WeatherCard,
         AddSensor,
         DeleteSensor,
-        EditSensor,
         ShowData
     },
     data()
@@ -76,7 +68,6 @@ export default {
         return {
             deleteSensorModal: false,
             showDataModal: false,
-            editPlantModal: false,
             selectedSensorId: '',
             addSensorModal: false,
             plants: [
@@ -114,11 +105,6 @@ export default {
         };
     },
     methods: {
-        editPlant(id)
-        {
-            this.selectedSensorId = id;
-            this.editPlantModal = true;
-        },
         deletePlant(id)
         {
             this.selectedSensorId = id;

@@ -3,6 +3,9 @@
         <v-row justify="center">
             <v-dialog
                 v-model="value"
+                @click:outside="$emit('input', false)"
+                @keydown.esc="$emit('input', false)"
+                @click.stop.prevent
                 width="500"
             >
                 <v-card class="ma-0">
