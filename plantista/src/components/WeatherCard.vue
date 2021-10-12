@@ -31,7 +31,7 @@
         async weather ()
         {
             const cityID = "Berlin";
-            const key = '';
+            const key = process.env.VUE_APP_WEATHER_API_KEY;
 
             if (!key) { return; }
             
