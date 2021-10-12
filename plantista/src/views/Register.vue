@@ -49,7 +49,8 @@ export default {
         return {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            testwert: ''
         }
     }
 }
