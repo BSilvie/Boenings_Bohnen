@@ -89,3 +89,24 @@ exports.findOneByDeviceAddressAndId = (req, res) => {
             });
         });
 };
+
+exports.fetchAllSensordataEntriesFromLatestDBVersion = (req, res) => {
+    const deviceAddress = req.params.deviceAddress;
+    DataCollections
+        .findOne({deviceAddress: deviceAddress})
+        .sort({ "dbVersion": -1 })
+        .then(data => {
+            if(!data){
+                res.status(404).send({
+                    message: "Found no data for device " + deviceAddress
+                });
+            } else {
+                res.send(data.sensorData);
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving sensordata for device " + deviceAddress
+            });
+        });
+}

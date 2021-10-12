@@ -83,19 +83,22 @@ db.mongoose
 /**
  * Scheduled Sync-Task
  */
-cron.schedule('5 * * * * *', () => {
 
-	var sync = require('./sync/db.sync');
-	console.log('[SYNC-WORKFLOW] started Sync-Job at ' + new Date(Date.now()));
-	sync.runRemoteSync()
-		.then(res => {
-			console.log("[SYNC-WORKFLOW] Sync-Job finished.");
-		})
-		.catch(error => {
-			console.log("[SYNC-WORKFLOW] An error occured while trying to start the Sync-Job. " + error.message);
-		});
+if(process.env.API_CONFIGURATION_MODE == "LOCAL" || process.env.API_CONFIGURATION_MODE == "DEVELOPMENT"){
+	cron.schedule('5 * * * * *', () => {
 
-});
+		var sync = require('./sync/db.sync');
+		console.log('[SYNC-WORKFLOW] started Sync-Job at ' + new Date(Date.now()));
+		sync.runRemoteSync()
+			.then(res => {
+				console.log("[SYNC-WORKFLOW] Sync-Job finished.");
+			})
+			.catch(error => {
+				console.log("[SYNC-WORKFLOW] An error occured while trying to start the Sync-Job. " + error.message);
+			});
+
+	});
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

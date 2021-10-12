@@ -15,7 +15,8 @@ exports.create = (req, res) => {
     const sensordata = new Sensordata({
         dataValue: req.body.dataValue,
         dataType: req.body.dataType,
-        deviceAddress: req.body.deviceAddress
+        deviceAddress: req.body.deviceAddress,
+        deviceName: req.body.deviceName
     });
 
     // putting the sensordata into the db

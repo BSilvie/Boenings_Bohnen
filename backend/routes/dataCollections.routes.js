@@ -15,4 +15,7 @@ router.get("/:deviceAddress", dataCollections.findAllByDeviceAddress);
 // retrieve an entry by deviceAddress and Id
 router.get("/:deviceAddress/id/:id", dataCollections.findOneByDeviceAddressAndId);
 
+// retrieve only sensordata from collection with deviceAddress
+router.get("/sensordata/:deviceAddress", dataCollections.fetchAllSensordataEntriesFromLatestDBVersion);
+
 module.exports = router;

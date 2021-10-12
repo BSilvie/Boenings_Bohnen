@@ -24,4 +24,10 @@ router.delete("/:id", users.delete);
 // delete all entries
 router.delete("/", users.deleteAll);
 
+//login user
+router.post("/login", users.loginUser);
+
+//logout user
+router.post("/logout", users.logoutUser);
+
 module.exports = router;

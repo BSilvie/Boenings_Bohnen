@@ -48,7 +48,7 @@ sync.runRemoteSync = async function(){
     console.log("[SYNC-WORKFLOW] Sending Request...");
     await axios.post(protocol + "://" + host + ":" + port + "/api/dataCollection", payload, {headers: headers})
     .then(data => {
-        console.log(`[SYNC-WORKFLOW] Request send successfully with statusCode ${data.status}`);
+        console.log(`[SYNC-WORKFLOW] Request send successfully to host ${host} with statusCode ${data.status}`);
     })
     .catch(error => {
         console.log("[SYNC-WORKFLOW] An error occured while sending the current databaseCollection to remoteServer");

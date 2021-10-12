@@ -5,7 +5,8 @@ module.exports = mongoose => {
             {
                 dataValue: String,
                 dataType: String,
-                deviceAddress: String
+                deviceAddress: String,
+                deviceName: String
             },
             { timestamps: true}
         )

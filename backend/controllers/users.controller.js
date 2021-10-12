@@ -171,3 +171,58 @@ exports.findAllByLocation = (req, res) => {
         });
 };
 
+// login user
+exports.loginUser = (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    const sha512sum = crypto.createHash('sha512');
+    const hashedPassword = sha512sum.update(password).digest('hex');
+
+    Users
+        .findOne({
+            username: username,
+            password: hashedPassword
+        })
+        .then(data => {
+            console.log(data);
+            if(!data){
+                res.status(404).send({
+                    message: "User couldnt be found"
+                });
+            } else {
+                res.cookie('loggedIn', "true", { expires: new Date(Date.now() + 900000), httpOnly: true });
+                res.status(200).send({
+                    message: "user " + username + " successfully signed in"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "An error occured while trying to login user: " + err.message
+            });
+        });
+}
+
+exports.logoutUser = (req, res) => {
+    const username = req.body.username;
+    Users
+        .findOne({username: username})
+        .then(data => {
+            if(!data){
+                res.status(404).send({
+                    message: "User couldnt be found"
+                });
+            } else {
+                res.cookie('loggedIn', "false", {expires: new Date(Date.now()), httpOnly: true});
+                res.status(200).send({
+                    message: "User logged out successfully"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "An error occured while trying to logout user: " + err.message
+            });
+        });
+}
