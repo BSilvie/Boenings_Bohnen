@@ -16,8 +16,8 @@ WiFiClient wifiClient;
 
 //const char* ssid = "WLANrouter";
 //const char* password = "testtest";
-const char *ssid = "Hotspot°";
-const char *password = "123456789";
+const char *ssid = "Plantista_IoT";
+const char *password = "plantistaIOT!";
 
 void setup()
 {
