@@ -1,2 +1,4 @@
 node_modules
+mongodb_data
 npm-debug.log
+tests
