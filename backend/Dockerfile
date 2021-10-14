@@ -1,14 +1,17 @@
-FROM node:latest
+FROM node:14-alpine as base
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /src
+COPY package.json package-lock.json /src/
+EXPOSE 3000
 
-COPY package.json /usr/src/app/
+FROM base as production
+ENV NODE_ENV=production
+RUN npm ci --production
+COPY . /src
+CMD ["node", "bin/www"]
 
-RUN npm install
-
-COPY . /usr/src/app
-
-EXPOSE 8000
-
-CMD [ "npm", "start" ]
+FROM base as dev
+ENV NODE_ENV=development
+RUN npm install -g nodemon && npm install
+COPY . /src
+CMD ["nodemon", "bin/www"]

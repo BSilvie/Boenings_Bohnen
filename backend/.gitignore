@@ -1,2 +1,5 @@
 node_modules
+mongodb_data
+bin
+!bin/www
 .env

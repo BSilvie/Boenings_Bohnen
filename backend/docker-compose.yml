@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./
+      target: dev
+    volumes:
+      - .:/src
+    command: npm start
+    ports:
+      - "${API_EXPOSE_PORT}:3000"
+    environment:
+      NODE_ENV: dev
+    depends_on:
+      - "mongodb"
+  mongodb:
+    image: mongo:latest
+    command: mongod --port ${MONGODB_EXPOSE_PORT}
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGO_INITDB_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_PASSWORD: ${MONGODB_PASSWORD}
+    ports:
+      - "${MONGODB_EXPOSE_PORT}:${MONGODB_EXPOSE_PORT}"
+    volumes:
+      - "./mongodb_data:/data/db"
+      - "./docker-entrypoint:/docker-entrypoint-initdb.d/"
+
+volumes:
+  mongodb_data:
